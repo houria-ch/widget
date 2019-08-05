@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
 
-  <title>Test</title>
+<head>
 
-  <!-- Meta -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- FONTS -->
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+    <title>Test</title>
 
-  <!-- Favicon --><link rel="icon" type="img/png" href="img/favicon.ico">
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONTS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-  </head>
+    <!-- Favicon -->
+    <link rel="icon" type="img/png" href="img/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var hash = window.location.hash.substr(1);
+            console.log(hash);
+            $.getJSON('https://houria-ch.github.io/fichier-json/jso.json?marque=' + hash, function(index) {
+                $('.cust-votants').append('<b> ' + index.view + '</b>');
+                $('.cust-note').append(index.note + '/' + index.scale);
+                var stars = Math.round(index.note / 2);
+                $('#StarSelector').addClass('stars-selected-' + stars);
+            });
+        });
+    </script>
+</head>
 
-  <body>
+<body>
     <div id="cust-widget-note">
-      <a href="#" target="_blank"><img src="img/cust-sceau.svg" class="sceau" alt="Test"></a>
-      <div class="cust-rating-box">
-        <span class="cust-votants"><b>336709</b> Avis</span>
-        <div id="StarSelector" class="stars-selected-4"></div>
-        <span class="cust-note">8.3/10</span>
-      </div>
+        <a href="#" target="_blank"><img src="img/cust-sceau.svg" class="sceau" alt="Test"></a>
+        <div class="cust-rating-box">
+            <span class="cust-votants"> Avis</span>
+            <div id="StarSelector" class=""></div>
+            <span class="cust-note"></span>
+        </div>
     </div>
-  </body>
+</body>
 
 </html>
